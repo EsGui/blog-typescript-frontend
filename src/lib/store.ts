@@ -4,7 +4,7 @@ import { blogSlice } from './features/blogs/blogsSlice';
 export const makeStore = () => {
     return configureStore({
         reducer: {
-            blog: blogSlice.getInitialState
+            blog: blogSlice.reducer
         }
     })
 }

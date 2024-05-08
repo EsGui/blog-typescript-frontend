@@ -5,7 +5,7 @@ export interface BlogState {
     title: String,
     content: String,
     author: String,
-    likes: number,
+    likes?: number,
 }
 
 const initialState: BlogState = {
@@ -20,12 +20,11 @@ export const blogSlice = createSlice({
     initialState,
     reducers: {
         addBlog: (state, action: PayloadAction<any>) => {
-            return { 
+            return {
                 ...state,
                 title: action.payload.title,
                 content: action.payload.content,
-                author: action.payload.author,
-                likes: action.payload.like
+                author: action.payload.author
             }
         },
     }
