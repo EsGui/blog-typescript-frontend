@@ -1,37 +1,38 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from '../../store';
+import BlogsApi from "@/api/BlogsApi";
+
+const url = "http://localhost:3001/list-blogs";
+
+export const fetchAllBlogs = createAsyncThunk(
+    '/list-blogs',
+    async () => {
+        const response = await BlogsApi.listBlog(url);
+        return response;
+    }
+)
 
 export interface BlogState {
-    title: String,
-    content: String,
-    author: String,
-    likes?: number,
+    listBlogs: Array<Object>
 }
 
 const initialState: BlogState = {
-    title: "",
-    content: "",
-    author: "",
-    likes: 0
+    listBlogs: []
 }
 
 export const blogSlice = createSlice({
     name: "blog",
     initialState,
     reducers: {
-        addBlog: (state, action: PayloadAction<any>) => {
-            return {
-                ...state,
-                title: action.payload.title,
-                content: action.payload.content,
-                author: action.payload.author
-            }
-        },
-    }
-})
 
-export const { addBlog } = blogSlice.actions;
+    },
+    extraReducers: (builder) => {
+        builder.addCase(fetchAllBlogs.fulfilled, (state, action) => {
+            state.listBlogs = action.payload
+        })
+    },
+})
 
 export const selectBlog = (state: RootState) => state.blog
 
-export default blogSlice.reducer
+export default blogSlice.reducer;
