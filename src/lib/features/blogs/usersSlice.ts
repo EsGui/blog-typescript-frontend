@@ -31,4 +31,8 @@ export const usersSlice = createSlice({
             state.token = action.payload
         })
     },
-})
+});
+
+export const selectTokenUser = (state: RootState) => state.users;
+
+export default usersSlice.reducer;
