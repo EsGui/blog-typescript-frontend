@@ -6,8 +6,8 @@ const url = "http://localhost:3001/register-user"
 
 export const fetchCreateUsers = createAsyncThunk(
     '/register-user',
-    async ({ name, email, password }: any) => {
-        const response = await UsersApi.registerUser(url, name, email, password);
+    async ({ name, email, nickname, password }: any) => {
+        const response = await UsersApi.registerUser(url, name, email, nickname, password);
         return response;
     }
 )
