@@ -5,6 +5,10 @@ const BlogsApi = {
         const request = await axios.get(url);
         const response = request.data;
         return response;
+    },
+
+    sendBlog: async (url: string, content: string) => {
+        
     }
 }
 

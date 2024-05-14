@@ -52,7 +52,7 @@ export default function HomeHeader() {
                     <Image onClick={redirectLogin} style={{ cursor: 'pointer' }}  width={50} height={50} src={User} alt="User" />
                     : (
                         <>
-                            <Link href="/painel">{ user.name }</Link>
+                            <Link href="/painel-user">{ user.name }</Link>
                             <Image onClick={redirectLogout} style={{ cursor: 'pointer' }}  width={50} height={50} src={Logout} alt="User" />
                         </>
                     )

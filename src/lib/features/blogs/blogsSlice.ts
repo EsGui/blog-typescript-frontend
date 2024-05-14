@@ -12,6 +12,13 @@ export const fetchAllBlogs = createAsyncThunk(
     }
 )
 
+export const sendBlogToolkit = createAsyncThunk(
+    'send-blog',
+    async () => {
+        
+    }
+)
+
 export interface BlogState {
     listBlogs: Array<Object>
 }

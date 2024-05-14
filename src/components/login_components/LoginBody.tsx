@@ -16,11 +16,7 @@ export default function LoginBody() {
 
     const userLogged = () => {
         dispatch(fetchLoginUser({ email, password }));
-        const token = localStorage.getItem("Token");
         router.push("/");
-        if(token) {
-            dispatch(fetchPersistLogin());
-        }
     }
 
     return (
