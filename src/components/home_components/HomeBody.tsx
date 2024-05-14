@@ -6,11 +6,13 @@ import { useEffect } from 'react';
 import { fetchAllBlogs } from '@/lib/features/blogs/blogsSlice';
 import { fetchPersistLogin } from '@/lib/features/blogs/usersSlice';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export default function HomeBody() {
     const userLogged = useAppSelector((state) => state.users.user);
     const blogs = useAppSelector((state) => state.blog.listBlogs);
     const dispatch = useAppDispatch();
+    const router = useRouter()
 
     useEffect(() => {
         dispatch(fetchAllBlogs());
@@ -22,15 +24,15 @@ export default function HomeBody() {
 
     console.log(blogs);
 
-    const openBlog = () => {
-
+    const openBlog = (title: string) => {
+        router.push(`/blog-especific/${title.replace(" ", "-")}`);
     }
 
     return (
         <div className={styles.HomeBodyContainer}>
             {
-                blogs.map(({ title, coverImage, content }: any, index) => (
-                    <div className={ styles.Blog } onClick={openBlog} key={index}>
+                blogs.map(({ title, coverImage }: any, index) => (
+                    <div className={ styles.Blog } onClick={() => openBlog(title)} key={index}>
                         <img width="100%" height="100%" src={ coverImage } alt="cover image" />
                         <p>{ title }</p>
                     </div>

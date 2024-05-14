@@ -19,12 +19,22 @@ export const sendBlogToolkit = createAsyncThunk(
     }
 )
 
+export const fetchBlogEspecific = createAsyncThunk(
+    '/blog-especific',
+    async (slug: string) => {
+        const response = await BlogsApi.blogEspecific(`http://localhost:3001/blog-especific`, slug);
+        return response
+    }
+)
+
 export interface BlogState {
     listBlogs: Array<Object>
+    blogEspecific: any
 }
 
 const initialState: BlogState = {
-    listBlogs: []
+    listBlogs: [],
+    blogEspecific: {}
 }
 
 export const blogSlice = createSlice({
@@ -36,6 +46,9 @@ export const blogSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(fetchAllBlogs.fulfilled, (state, action) => {
             state.listBlogs = action.payload
+        }),
+        builder.addCase(fetchBlogEspecific.fulfilled, (state, action) => {
+            state.blogEspecific = action.payload
         })
     },
 })
