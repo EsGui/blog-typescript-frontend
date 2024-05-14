@@ -18,9 +18,11 @@ export default function BlogEspecificBody({ slug }) {
     console.log("Blog especifico ===>>>", blogEspecific)
 
     return (
-        <div>
-            <h1>{ blogEspecific.title }</h1>
-            <div dangerouslySetInnerHTML={{ __html: blogEspecific.content }}  />
+        <div className={ styles.DivBlogEspecificBodyContainer }>
+            <div className={ styles.Blog }>
+                <h1>{ blogEspecific.title }</h1>
+                <div dangerouslySetInnerHTML={{ __html: blogEspecific.content }}  />
+            </div>
         </div>
     )
 }
