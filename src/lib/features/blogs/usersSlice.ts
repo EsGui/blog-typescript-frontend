@@ -35,6 +35,7 @@ interface UsersState {
 
 const initialState: UsersState = {
     user: {
+        id: "",
         name: "",
         email: "",
         nickname: "",
@@ -50,6 +51,7 @@ export const usersSlice = createSlice({
     extraReducers(builder) {
         builder.addCase(fetchPersistLogin.fulfilled, (state, action) => {
             console.log("action payload ===>>> ", action.payload)
+            state.user.id = action.payload.user._id
             state.user.name = action.payload.user.name,
             state.user.email = action.payload.user.email,
             state.user.nickname = action.payload.user.nickname
